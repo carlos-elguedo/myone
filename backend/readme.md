@@ -1,1 +1,1 @@
-## Backend of the app MyOnex|
+## Backend of the app MyOne
