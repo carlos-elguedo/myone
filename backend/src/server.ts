@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use("/", authRoutes);
+app.use("/auth", authRoutes);
 
 app.get('/private', authenticateToken, (req, res) => {
   res.send('This is a private API');
