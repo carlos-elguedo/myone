@@ -3,16 +3,18 @@ import { Navigate, Outlet } from "react-router-dom";
 
 interface Props {
     isAllowed: boolean;
-    children?: React.ReactNode;
+    children?: React.ReactElement;
     redirectTo?: string;
 }
 
-export const ProtectedRoute = ({
+function ProtectedRoute ({
     isAllowed,
     children,
     redirectTo = "/login",
-}: Props) => {
+}: Props) {
     if (isAllowed)
         return children ? children : <Outlet />;
     return <Navigate to={redirectTo} />;
 };
+
+export default ProtectedRoute;

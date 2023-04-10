@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import Navigation from "./components/Navegation";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
+import Enter from "./components/Enter";
 import Profile from "./components/Profile";
-import { ProtectedRoute } from "./components/ProtectedRoutes";
+import ProtectedRoute from "./components/ProtectedRoutes";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -16,16 +16,16 @@ const queryClient = new QueryClient();
 function App() {
 
   const isAuth = useAuthStore((state) => state.isAuth);
+  console.log("🚀 ~ file: App.tsx:19 ~ App ~ isAuth:", isAuth)
 
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Navigation />
         <Container>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Home />} />
-            <Route element={<ProtectedRoute isAllowed={isAuth}  />}>
+            <Route path="/login" element={<Enter />} />
+            <Route element={<ProtectedRoute isAllowed={isAuth} />}>
+              <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
